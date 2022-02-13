@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 
 namespace MyBlockchain.Classes
 {
-    class BlockChain
+    class Chain
     {
         List<Block>? blocks;
 
         public byte[]? last_hash;
 
-        public BlockChain()
+        public Chain()
         {
             blocks = new List<Block>();
             last_hash = null;
         }
 
-        public void addBlock()
+        public void AddBlock(Block block)
         {
-            //Добавление блока в блокчейн
+            blocks?.Add(block);
+            last_hash = block.GetHash();
+        }
+
+        public void ReadFirst()
+        {
+            if (blocks == null || last_hash == null) return;
+
+            Console.WriteLine(blocks.First().GetMessage());
         }
 
     }
