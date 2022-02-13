@@ -18,10 +18,18 @@ namespace MyBlockchain.Classes
             last_hash = null;
         }
 
-        public void AddBlock(Block block)
+        public void AddBlock(string message)
         {
-            blocks?.Add(block);
-            last_hash = block.GetHash();
+            if (blocks == null) throw new NullReferenceException("Коллекция блоков не инициализирована");
+
+            Block newblock;
+            if (last_hash != null)
+                newblock = new Block(last_hash, message);
+            else
+                newblock = new Block(message); // Создания генезис-блока
+
+            blocks.Add(newblock);
+            last_hash = newblock.GetHash();
         }
 
         public void ReadFirst()
@@ -29,6 +37,12 @@ namespace MyBlockchain.Classes
             if (blocks == null || last_hash == null) return;
 
             Console.WriteLine(blocks.First().GetMessage());
+        }
+
+        // Метод для проверки целостности последовательности блоков
+        public bool CheckValid()
+        {
+            return false;
         }
 
     }

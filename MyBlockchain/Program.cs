@@ -2,11 +2,7 @@
 
 Chain bchain = new Chain();
 
-Block block = new Block("Hello Blockchain!");
-
-
-
-bchain.AddBlock(block);
+bchain.AddBlock("привет");
 
 bchain.ReadFirst();
 
