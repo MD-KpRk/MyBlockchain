@@ -33,7 +33,7 @@ namespace MyBlockchain.Classes
             this.SetDataMessage(message);
             curr_hash = this.GetHash(data);
         }
-        private void SetDataMessage(string str) => data = Encoding.ASCII.GetBytes(str);
+        private void SetDataMessage(string str) => data = Encoding.UTF8.GetBytes(str);
         
         // Метод для получения хеша путём рассчётов
         private byte[]? GetHash(byte[]? src)
@@ -51,7 +51,7 @@ namespace MyBlockchain.Classes
         public string GetMessage()
         {
             if (data == null) return string.Empty;
-            return Encoding.ASCII.GetString(data);
+            return Encoding.UTF8.GetString(data);
         }
     }
 }
