@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace MyBlockchain.Classes
 {
-    class Chain
+    class Chain : IEnumerable
     {
         List<Block>? blocks;
 
         public byte[]? last_hash;
+
+        public IEnumerator GetEnumerator() =>
+            blocks != null ? ((IEnumerable)blocks).GetEnumerator() : throw new NullReferenceException("Коллекция блоков не инициализирована");
 
         public Block this[int index]
         {
@@ -35,7 +39,7 @@ namespace MyBlockchain.Classes
                 newblock = new Block(message); // Создания генезис-блока при отсуствии предыдущего
 
             blocks.Add(newblock);
-            last_hash = newblock.GetHash();
+            last_hash = newblock.GetCurrentHash();
         }
 
         public void ReadFirst()
@@ -49,8 +53,16 @@ namespace MyBlockchain.Classes
         // Метод для проверки целостности последовательности блоков
         public bool CheckValid()
         {
-            return false;
-        }
+            if(blocks == null) throw new NullReferenceException("Коллекция блоков не инициализирована");
+            if(blocks.Count()==1) return true;
 
+            for(int i=1;i<blocks.Count();i++)
+            {
+                if (blocks[i - 1].GetCurrentHash() != blocks[i].GetPreviosHash())
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

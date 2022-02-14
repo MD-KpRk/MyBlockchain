@@ -44,7 +44,8 @@ namespace MyBlockchain.Classes
         }
 
         // Метод для получения хеша извне без рассчёта
-        public byte[]? GetHash() => curr_hash;
+        public byte[]? GetCurrentHash() => curr_hash;
+        public byte[]? GetPreviosHash() => prev_hash;
 
         // Метод для получения текстового сообщения из блока
         public string GetMessage()
