@@ -52,5 +52,10 @@ namespace MyBlockchain.Classes
             if (data == null) return string.Empty;
             return Encoding.UTF8.GetString(data);
         }
+
+        public override string ToString()
+        {
+            return this.GetMessage();
+        }
     }
 }
