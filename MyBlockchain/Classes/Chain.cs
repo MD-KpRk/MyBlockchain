@@ -12,6 +12,12 @@ namespace MyBlockchain.Classes
 
         public byte[]? last_hash;
 
+        public Block this[int index]
+        {
+            get =>
+                blocks != null ? blocks[index] : throw new NullReferenceException("Коллекция блоков не инициализирована");
+        }
+
         public Chain()
         {
             blocks = new List<Block>();
@@ -26,7 +32,7 @@ namespace MyBlockchain.Classes
             if (last_hash != null)
                 newblock = new Block(last_hash, message);
             else
-                newblock = new Block(message); // Создания генезис-блока
+                newblock = new Block(message); // Создания генезис-блока при отсуствии предыдущего
 
             blocks.Add(newblock);
             last_hash = newblock.GetHash();
@@ -38,6 +44,7 @@ namespace MyBlockchain.Classes
 
             Console.WriteLine(blocks.First().GetMessage());
         }
+
 
         // Метод для проверки целостности последовательности блоков
         public bool CheckValid()

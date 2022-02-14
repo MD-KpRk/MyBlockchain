@@ -43,7 +43,6 @@ namespace MyBlockchain.Classes
                 return hash.ComputeHash(src);
         }
 
-
         // Метод для получения хеша извне без рассчёта
         public byte[]? GetHash() => curr_hash;
 
