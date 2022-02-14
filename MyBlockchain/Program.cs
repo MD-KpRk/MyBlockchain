@@ -1,5 +1,4 @@
-﻿//using MyBlockchain.Classes;
-using BlockChain;
+﻿using BlockChain;
 
 Chain bchain = new Chain();
 
