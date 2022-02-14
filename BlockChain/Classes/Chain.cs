@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBlockchain.Classes
+namespace BlockChain
 {
-    class Chain : IEnumerable
+    public class Chain : IEnumerable
     {
         List<Block>? blocks;
 

@@ -5,11 +5,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBlockchain.Classes
+namespace BlockChain
 {
 
     // Класс для описания блока из блокчейна
-    class Block
+    public class Block
     {
         byte[]? prev_hash;
         byte[]? curr_hash;
@@ -43,8 +43,9 @@ namespace MyBlockchain.Classes
                 return hash.ComputeHash(src);
         }
 
-        // Метод для получения хеша извне без рассчёта
+        // Метод для получения текущего хеша извне. Без рассчёта
         public byte[]? GetCurrentHash() => curr_hash;
+        // Метод для получения хеша предыдущего элемента извне. Без рассчёта
         public byte[]? GetPreviosHash() => prev_hash;
 
         // Метод для получения текстового сообщения из блока
